@@ -8,7 +8,7 @@ Add pendo to your application.
 
 ## Usage
 
-Configure your pendo api key in environment.js
+Configure your Pendo API key in environment.js
 ```javascript
 // environment.js
 ENV['ember-cli-pendo'] = {
@@ -16,11 +16,11 @@ ENV['ember-cli-pendo'] = {
 };
 ```
 
-The pendo javascript api is now avaliable globally at window.pendo
+The Pendo JavaScript API is now available globally at window.pendo
 
 For example,
 ```javascript
-var data = {
+const data = {
   visitor: {
     id: user.get('id'),
     email: user.get('email')
