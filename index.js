@@ -8,20 +8,14 @@ module.exports = {
   },
   contentFor: function(type, config) {
     if (type === 'head' && config.environment !== 'test') {
-      return "<script>\n" +
-        "window.pendo_options = {\n" +
-        "  apiKey: '" + config['ember-cli-pendo'].apiKey + "',\n" +
-        "  // This is required to be able to load data client side\n" +
-        "  usePendoAgentAPI: true\n" +
-        "};\n" +
-        "(function() {\n" +
-        "  var script = document.createElement('script');\n" +
-        "  script.type = 'text/javascript';\n" +
-        "  script.async = true;\n" +
-        "  script.src = ('https:' === document.location.protocol ? 'https://' : 'http://' ) + 'd3accju1t3mngt.cloudfront.net/js/pa.min.js';\n" +
-        "  var firstScript = document.getElementsByTagName('script')[0];\n" +
-        "  firstScript.parentNode.insertBefore(script, firstScript);\n" +
-        "})();\n" +
+      return "<script type=\"text/javascript\">\n" +
+        "(function(apiKey){\n" +
+        "  (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=[];\n" +
+        "    v=['initialize','identify','updateOptions','pageLoad'];for(w=0,x=v.length;w<x;++w)(function(m){\n" +
+        "    o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);\n" +
+        "    y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';\n" +
+        "    z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');\n" +
+        "})('" + config['ember-cli-pendo'].apiKey + "');\n" +
         "</script>\n";
     }
   }
